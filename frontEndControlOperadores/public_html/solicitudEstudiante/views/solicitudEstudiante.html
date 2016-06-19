@@ -1,0 +1,244 @@
+
+<div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>  
+                </button>
+                <a class="navbar-brand">Control de Operadores </a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <form id="signin" class="navbar-form navbar-right" role="form" ng-submit="doLogin()">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input id="usuario" type="text" class="form-control" name="usuario" value="" placeholder="Usuario" ng-model="loginData.usuario">                                        
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input id="contrasena" type="password" class="form-control" name="contrasena" value="" placeholder="Contraseña" ng-model="loginData.contrasena">                                        
+                    </div>
+                    <button type="submit" class="btn btn-primary">Administrador</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <div class="container">
+        <div class="row">
+            <h2 class="span1">Sistema de control de operadores</h2>
+        </div>
+    </div>
+    <br>
+
+    <div class="container well">
+        <h3>Solicitud Operador</h3>
+        <br>
+
+        <div>
+            <table style="width:100%">
+                <tr>
+                    <td>
+                        <fieldset class="form-group pad col-md-11">
+                            <label>Cedula</label>
+                            <input type="text" class="form-control" id="cedulaInput" placeholder="" ng-model="solicitudData.cedula">
+                        </fieldset>
+                    </td>
+                    <td>
+                        <fieldset class="form-group col-md-11">
+                            <label>Carnet</label>
+                            <input type="text" class="form-control" id="carnetInput" placeholder="" ng-model="solicitudData.carnet">
+                        </fieldset>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <fieldset class="form-group pad col-md-11">
+                            <label>Nombre Completo</label>
+                            <input type="text" class="form-control" id="nombreIput" placeholder="" ng-model="solicitudData.nombre">
+                        </fieldset>
+                    </td>
+                    <td>
+                        <fieldset class="form-group col-md-11">
+                            <label>Correo</label>
+                            <input type="email" class="form-control" id="correoInput" placeholder="" ng-model="solicitudData.correo">
+                        </fieldset>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <fieldset class="form-group pad col-md-11">
+                            <label>Telefono</label>
+                            <input type="text" class="form-control" id="telefonoInput" placeholder="" ng-model="solicitudData.telefono">
+                        </fieldset>
+                    </td>
+                    <td>
+                        <fieldset class="form-group col-md-11">
+                            <label>Direccion</label>
+                            <input type="text" class="form-control" id="direccionInput" placeholder="" ng-model="solicitudData.direccion">
+                        </fieldset>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <fieldset class="form-group pad col-md-11">
+                            <label>Ponderado</label>
+                            <input type="text" class="form-control" id="ponderadoInput" placeholder="" ng-model="solicitudData.ponderado">
+                        </fieldset>
+                    </td>
+                    <td>
+                        <fieldset class="form-group col-md-11">
+                            <label>Cuenta Banco Nacional</label>
+                            <input type="text" class="form-control" id="cuentaBancoInput" placeholder="" ng-model="solicitudData.cuentaBanco">
+                        </fieldset>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <fieldset class="form-group pad col-md-11">
+                            <label>Cuenta Cliente Banco Nacional</label>
+                            <input type="text" class="form-control" id="cuentaClienteBancoInput" placeholder="" ng-model="solicitudData.cuentaClienteBanco">
+                        </fieldset>
+                    </td>
+                    <td>
+                        <fieldset class="form-group col-md-1">
+                            <input type="file" file-input="files" name="filefield" id="filefield" ng-model="filefield">
+                        </fieldset>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <fieldset class="form-group col-md-11">
+                            <label>Justificacion</label>
+                            <textarea class="form-control" id="justificacionTextarea" rows="3" ng-model="solicitudData.justificacion"></textarea>
+                        </fieldset>
+                    </td>
+                    <td>
+                        <fieldset class="form-group col-md-11">
+                            <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#myModal">Horario</button>
+                        </fieldset>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <fieldset class="form-group col-md-11">
+                            <button ng-click="doSolicitud()" class="btn btn-primary ">Enviar</button>
+                        </fieldset>
+                    </td>
+                </tr>
+            </table>
+        </div>            
+    </div>  
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <td>
+                                Hora
+                            </td>
+                            <td>
+                                Lunes
+                            </td>
+                            <td>
+                                Martes
+                            </td>
+                            <td>
+                                Miercoles
+                            </td>
+                            <td>
+                                Jueves
+                            </td>
+                            <td>
+                                Viernes
+                            </td>
+                            <td>
+                                Sabado
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Mañana 
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioData.lManana"> 
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioData.kManana">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioData.mManana">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioData.jManana">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioData.vManana">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioData.sManana">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Tarde 
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioData.lTarde"> 
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioData.kTarde">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioData.mTarde">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioData.jTarde">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioData.vTarde">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioData.sTarde">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Noche 
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioData.lNoche"> 
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioData.kNoche">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioData.mNoche">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioData.jNoche">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioData.vNoche">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>      
+        </div>
+    </div>
+</div>

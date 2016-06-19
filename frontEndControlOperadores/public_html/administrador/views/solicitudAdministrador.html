@@ -1,0 +1,219 @@
+<div>
+    <div class="navbar navbar-default set-radius-zero">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+        </div>
+        <section class="menu-section" ng-init="loadAministrador()">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="navbar-collapse collapse">
+                            <ul id="menu-top" class="nav navbar-nav navbar-right">
+                                <li><a href="#/administrador/administrador">Inicio</a></li>
+                                <li><a class="menu-top-active" href="#/administrador/solicitudAdministrador">Solicitudes</a></li>
+                                <li><a>Asignar</a></li>
+                                <li><a ng-click="salir()">Salir</a></li>
+                                <li><a ng-model="usuario">{{usuario}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <div>
+        <h1>Solicitudes</h1>
+    </div>
+    
+   <div class="panel-group">
+        <div class="panel panel-default" ng-repeat="i in listSolicitudes">
+           <div class="panel-heading" >
+                <h4 class="panel-title">
+                    <div data-toggle="collapse" data-parent="#accordion" data-target="#{{i.id}}">{{i.nombre}}</div>  
+                </h4>
+            </div>
+            <div id="{{i.id}}" class="panel-collapse collapse" ALIGN=center>
+               <table class="table table-bordered">
+                   <tr>
+                       <td>
+                           <h4>Nombre:</h4> {{i.nombre}}
+                       </td>
+                       <td>
+                           <h4>Direccion:</h4> {{i.direccion}}
+                       </td>
+                       <td>
+                           <h4>Ponderado:</h4> {{i.ponderado}}
+                       </td>
+                   </tr>
+                   <tr>
+                       <td>
+                           <h4>Cedula:</h4> {{i.cedula}}
+                       </td>
+                       <td>
+                           <h4>Cuenta Banco:</h4> {{i.cuentaBanco}}
+                       </td>
+                       <td>
+                           <h4>Cuenta Cliente:</h4> {{i.cuentaClienteBanco}}
+                       </td>
+                   </tr>
+                   <tr>
+                       <td>
+                           <h4>Carnet:</h4> {{i.carnet}}
+                       </td>
+                       <td>
+                           <h4>Correo:</h4> {{i.correo}}
+                       </td>
+                       <td>
+                           <h4>Justificación:</h4> {{i.justificacion}}
+                       </td>
+                   </tr>
+                   <tr>
+                       <td>
+                           Telefono:</h3> {{i.telefono}}
+                       </td>
+                       <td>
+                           <button class="btn btn-primary">
+                                <span class="glyphicon glyphicon-edit"></span> Editar
+                            </button>
+                            
+                           <button class="btn btn-primary">
+                                <span class="glyphicon glyphicon-eye-open"></span> Informe
+                            </button>
+                            
+                       </td>
+                       <td>
+                           <button class="btn btn-primary" data-toggle="modal" data-target="#horarioDisponible" ng-click="loadHorarioDisponible(i.id)">
+                                <span class="glyphicon glyphicon-eye-open"></span> Disponibilidad
+                            </button>
+                       </td>
+                   </tr>
+               </table>
+            </div>
+                <!--<div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" data-target="#collapse2">Promedio del curso</a>
+                    </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse" ALIGN=center>
+                   <div>
+                       hola2
+                   </div>
+                </div>-->
+        </div>
+    </div>
+    
+    <div class="modal fade" id="horarioDisponible" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Horario Disponible</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <td>
+                                Hora
+                            </td>
+                            <td>
+                                Lunes
+                            </td>
+                            <td>
+                                Martes
+                            </td>
+                            <td>
+                                Miercoles
+                            </td>
+                            <td>
+                                Jueves
+                            </td>
+                            <td>
+                                Viernes
+                            </td>
+                            <td>
+                                Sabado
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Mañana 
+                            </td>
+                            <td>
+                                <input type="checkbox" disabled="disabled" ng-model="horarioDataDisponile.lManana"> 
+                            </td>
+                            <td>
+                                <input type="checkbox" disabled="disabled" ng-model="horarioDataDisponile.kManana">
+                            </td>
+                            <td>
+                                <input type="checkbox" disabled="disabled" ng-model="horarioDataDisponile.mManana">
+                            </td>
+                            <td>
+                                <input type="checkbox" disabled="disabled" ng-model="horarioDataDisponile.jManana">
+                            </td>
+                            <td>
+                                <input type="checkbox" disabled="disabled" ng-model="horarioDataDisponile.vManana">
+                            </td>
+                            <td>
+                                <input type="checkbox" disabled="disabled" ng-model="horarioDataDisponile.sManana">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Tarde 
+                            </td>
+                            <td>
+                                <input type="checkbox" disabled="disabled" ng-model="horarioDataDisponile.lTarde"> 
+                            </td>
+                            <td>
+                                <input type="checkbox" disabled="disabled" ng-model="horarioDataDisponile.kTarde">
+                            </td>
+                            <td>
+                                <input type="checkbox" disabled="disabled" ng-model="horarioDataDisponile.mTarde">
+                            </td>
+                            <td>
+                                <input type="checkbox" disabled="disabled" ng-model="horarioDataDisponile.jTarde">
+                            </td>
+                            <td>
+                                <input type="checkbox" disabled="disabled" ng-model="horarioDataDisponile.vTarde">
+                            </td>
+                            <td>
+                                <input type="checkbox" disabled="disabled" ng-model="horarioDataDisponile.sTarde">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Noche 
+                            </td>
+                            <td>
+                                <input type="checkbox" disabled="disabled" ng-model="horarioDataDisponile.lNoche"> 
+                            </td>
+                            <td>
+                                <input type="checkbox" disabled="disabled" ng-model="horarioDataDisponile.kNoche">
+                            </td>
+                            <td>
+                                <input type="checkbox" disabled="disabled" ng-model="horarioDataDisponile.mNoche">
+                            </td>
+                            <td>
+                                <input type="checkbox" disabled="disabled" ng-model="horarioDataDisponile.jNoche">
+                            </td>
+                            <td>
+                                <input type="checkbox" disabled="disabled" ng-model="horarioDataDisponile.vNoche">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>      
+        </div>
+    </div>
+    
+</div>

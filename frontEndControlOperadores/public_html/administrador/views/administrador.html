@@ -1,0 +1,33 @@
+<div>
+    <div class="navbar navbar-default set-radius-zero">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+        </div>
+        <section class="menu-section" ng-init="loadAministrador()">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="navbar-collapse collapse">
+                            <ul id="menu-top" class="nav navbar-nav navbar-right">
+                                <li><a class="menu-top-active" href="#/administrador/administrador">Inicio</a></li>
+                                <li><a href="#/administrador/solicitudAdministrador">Solicitudes</a></li>
+                                <li><a>Asignar</a></li>
+                                <li><a ng-click="salir()">Salir</a></li>
+                                <li><a ng-model="usuario">{{usuario}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div>
+        <h1>Inicio</h1>
+    </div>
+</div>
