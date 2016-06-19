@@ -31,14 +31,6 @@ angular
           templateUrl: 'solicitudEstudiante/views/solicitudEstudiante.html',
           controller: 'solicitudEstudianteCtrl'
         })
-    
-    .state('informeMatriculaEstudiante',{
-          url: '/informeMatriculaEstudiante',
-          parent: 'base',
-          templateUrl: 'informeMatriculaEstudiante/views/informeMatriculaEstudiante.html',
-          controller: 'informeMatriculaEstudianteCtrl'
-        })
-
 
     .state('administrador', {
           url: '/administrador/administrador',
@@ -51,6 +43,13 @@ angular
           url: '/administrador/solicitudAdministrador',
           parent: 'base',
           templateUrl: 'administrador/views/solicitudAdministrador.html',
+          controller: 'administradorCtrl'
+        })
+
+    .state('labsAdministrador', {
+          url: '/administrador/labsAdministrador',
+          parent: 'base',
+          templateUrl: 'administrador/views/labsAdministrador.html',
           controller: 'administradorCtrl'
         })
       /*
