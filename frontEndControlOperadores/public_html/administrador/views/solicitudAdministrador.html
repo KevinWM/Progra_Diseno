@@ -80,11 +80,11 @@
                            Telefono:</h3> {{i.telefono}}
                        </td>
                        <td>
-                           <button class="btn btn-primary">
+                           <button class="btn btn-primary" data-toggle="modal" data-target="#formulario" ng-click="loadFormularioEdit(i)">
                                 <span class="glyphicon glyphicon-edit"></span> Editar
                             </button>
                             
-                           <button class="btn btn-primary" ng-click="loadArchivoMatricula(i.id)">
+                           <button class="btn btn-primary"  ng-click="loadArchivoMatricula(i.id)">
                                 <span class="glyphicon glyphicon-eye-open"></span> Informe
                             </button>
                             
@@ -100,6 +100,213 @@
         </div>
     </div>
     
+    <div class="modal fade" id="formulario" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header" ng-model = "nombreEstudiante">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Solicitud {{nombreEstudiante}}</h4>
+                </div>
+                <div class="modal-body">
+                    <table style="width:100%">
+                        <tr>
+                            <td>
+                                <fieldset class="form-group pad col-md-11">
+                                    <label>Cedula</label>
+                                    <input type="text" class="form-control" id="cedulaInput" placeholder="" ng-model="solicitudEditData.cedula">
+                                </fieldset>
+                            </td>
+                            <td>
+                                <fieldset class="form-group col-md-11">
+                                    <label>Carnet</label>
+                                    <input type="text" class="form-control" id="carnetInput" placeholder="" ng-model="solicitudEditData.carnet">
+                                </fieldset>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <fieldset class="form-group pad col-md-11">
+                                    <label>Nombre Completo</label>
+                                    <input type="text" class="form-control" id="nombreIput" placeholder="" ng-model="solicitudEditData.nombre">
+                                </fieldset>
+                            </td>
+                            <td>
+                                <fieldset class="form-group col-md-11">
+                                    <label>Correo</label>
+                                    <input type="email" class="form-control" id="correoInput" placeholder="" ng-model="solicitudEditData.correo">
+                                </fieldset>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <fieldset class="form-group pad col-md-11">
+                                    <label>Telefono</label>
+                                    <input type="text" class="form-control" id="telefonoInput" placeholder="" ng-model="solicitudEditData.telefono">
+                                </fieldset>
+                            </td>
+                            <td>
+                                <fieldset class="form-group col-md-11">
+                                    <label>Direccion</label>
+                                    <input type="text" class="form-control" id="direccionInput" placeholder="" ng-model="solicitudEditData.direccion">
+                                </fieldset>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <fieldset class="form-group pad col-md-11">
+                                    <label>Ponderado</label>
+                                    <input type="text" class="form-control" id="ponderadoInput" placeholder="" ng-model="solicitudEditData.ponderado">
+                                </fieldset>
+                            </td>
+                            <td>
+                                <fieldset class="form-group col-md-11">
+                                    <label>Cuenta Banco Nacional</label>
+                                    <input type="text" class="form-control" id="cuentaBancoInput" placeholder="" ng-model="solicitudEditData.cuentaBanco">
+                                </fieldset>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+                                <fieldset class="form-group pad col-md-11">
+                                    <label>Cuenta Cliente Banco Nacional</label>
+                                    <input type="text" class="form-control" id="cuentaClienteBancoInput" placeholder="" ng-model="solicitudEditData.cuentaClienteBanco">
+                                </fieldset>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <fieldset class="form-group col-md-11">
+                                    <label>Justificacion</label>
+                                    <textarea class="form-control" id="justificacionTextarea" rows="3" ng-model="solicitudEditData.justificacion"></textarea>
+                                </fieldset>
+                            </td>
+                            <td>
+                                <fieldset class="form-group col-md-11">
+                                    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#horarioEditDisponible">Horario</button>
+                                </fieldset>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="modificarFormulario()">Modificar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="eliminarFormulario()">Eliminar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="horarioEditDisponible" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Horario Disponible</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <td>
+                                Hora
+                            </td>
+                            <td>
+                                Lunes
+                            </td>
+                            <td>
+                                Martes
+                            </td>
+                            <td>
+                                Miercoles
+                            </td>
+                            <td>
+                                Jueves
+                            </td>
+                            <td>
+                                Viernes
+                            </td>
+                            <td>
+                                Sabado
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Mañana
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioDataDisponile.lManana">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioDataDisponile.kManana">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioDataDisponile.mManana">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioDataDisponile.jManana">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioDataDisponile.vManana">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioDataDisponile.sManana">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Tarde
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioDataDisponile.lTarde">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioDataDisponile.kTarde">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioDataDisponile.mTarde">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioDataDisponile.jTarde">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioDataDisponile.vTarde">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioDataDisponile.sTarde">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Noche
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioDataDisponile.lNoche">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioDataDisponile.kNoche">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioDataDisponile.mNoche">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioDataDisponile.jNoche">
+                            </td>
+                            <td>
+                                <input type="checkbox" ng-model="horarioDataDisponile.vNoche">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="horarioDisponible" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
