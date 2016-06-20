@@ -23,9 +23,13 @@ angular.module('ASPStore').directive('fileInput' ,['$parse', function($parse){
     $scope.listSolicitudes = "";
     $scope.listLaboratorios = "";
     $scope.horarioDataDisponile = {};
+    $scope.solicitudEditData = {};
     $scope.laboratorioData = {};
     $scope.labEditData = {};
     $scope.labActual = {};
+    $scope.idFormularioActual = "";
+
+
 
     $http.get("http://localhost/backEndControlOperadores/public/VerFormularios")
 
@@ -33,6 +37,14 @@ angular.module('ASPStore').directive('fileInput' ,['$parse', function($parse){
                 $scope.listSolicitudes = response;
             });
 
+    $scope.loadSolicitudes = function(){
+
+        $http.get("http://localhost/backEndControlOperadores/public/VerFormularios")
+
+            .success(function(response) {
+                $scope.listSolicitudes = response;
+            });
+    };
 
 
     $scope.salir = function (){
@@ -144,6 +156,51 @@ angular.module('ASPStore').directive('fileInput' ,['$parse', function($parse){
         .success(function(response) {
             $scope.loadLaboratorios();
             alert("Eliminado Exitosamente", $state.go('labsAdministrador'));
+        });
+    };
+
+    $scope.loadFormularioEdit = function(formularioActual){
+
+        $scope.idFormularioActual = formularioActual.id;
+
+        $scope.nombreEstudiante = formularioActual.nombre;
+        $scope.solicitudEditData.cedula = formularioActual.cedula;
+        $scope.solicitudEditData.nombre = formularioActual.nombre;
+        $scope.solicitudEditData.carnet = formularioActual.carnet;
+        $scope.solicitudEditData.correo = formularioActual.correo;
+        $scope.solicitudEditData.telefono = formularioActual.telefono;
+        $scope.solicitudEditData.direccion = formularioActual.direccion;
+        $scope.solicitudEditData.ponderado = formularioActual.ponderado;
+        $scope.solicitudEditData.cuentaBanco = formularioActual.cuentaBanco;
+        $scope.solicitudEditData.cuentaClienteBanco = formularioActual.cuentaClienteBanco;
+        $scope.solicitudEditData.justificacion = formularioActual.justificacion;
+
+        $scope.loadHorarioDisponible(formularioActual.id);
+    };
+
+    $scope.modificarFormulario = function(){
+
+        $http.put("http://localhost/backEndControlOperadores/public/EditarFormulario/"+$scope.idFormularioActual, $scope.solicitudEditData)
+        .success(function(responseFormularioEdit) {
+
+            $http.put("http://localhost/backEndControlOperadores/public/EditarHorarioDisponible/"+$scope.idFormularioActual, $scope.horarioDataDisponile)
+            .success(function(responseHorarioEdit) {
+                $scope.loadSolicitudes();
+                alert("Modificado Exitosamente!!", $state.go('solicitudAdministrador'));
+            });
+        });
+    };
+
+    $scope.eliminarFormulario = function(){
+
+        $http.delete("http://localhost/backEndControlOperadores/public/EliminarFormulario/"+$scope.idFormularioActual)
+        .success(function(responseFormularioEliminar) {
+
+            $http.delete("http://localhost/backEndControlOperadores/public/EliminarHorarioDisponible/"+$scope.idFormularioActual)
+            .success(function(responseHorarioEliminar) {
+                $scope.loadSolicitudes();
+                alert("Eliminado Exitosamente!!", $state.go('solicitudAdministrador'));
+            });
         });
     };
 });

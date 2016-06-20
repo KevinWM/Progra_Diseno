@@ -40,8 +40,10 @@ angular.module('ASPStore').directive('fileInput' ,['$parse', function($parse){
             }                       
             else
             {
-                console.log('Usuario o contraseña incorrecta');
+                alert("Usuario o contraseña incorrecta");
             }
+            $scope.loginData.usuario = "";
+            $scope.loginData.contrasena = "";
         });
     };
     
@@ -60,6 +62,17 @@ angular.module('ASPStore').directive('fileInput' ,['$parse', function($parse){
 
                 .success(function(responseArchivo) {
                 //console.log($scope.reporteMatricula);
+                alert("Se envio Exitosamente !!");
+                $scope.solicitudData.cedula = "";
+                $scope.solicitudData.nombre = "";
+                $scope.solicitudData.carnet = "";
+                $scope.solicitudData.correo = "";
+                $scope.solicitudData.telefono = "";
+                $scope.solicitudData.direccion = "";
+                $scope.solicitudData.ponderado = "";
+                $scope.solicitudData.cuentaBanco = "";
+                $scope.solicitudData.cuentaClienteBanco = "";
+                $scope.solicitudData.justificacion = "";
             });
             
            
@@ -77,7 +90,6 @@ angular.module('ASPStore').directive('fileInput' ,['$parse', function($parse){
                 .success(function(d) {
             });
         });
-        
     };
     
 });
