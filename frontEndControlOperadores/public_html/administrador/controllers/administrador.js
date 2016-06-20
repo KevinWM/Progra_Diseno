@@ -102,41 +102,43 @@ angular.module('ASPStore').directive('fileInput' ,['$parse', function($parse){
             alert("Modificado Exitosamente!!", $state.go('labsAdministrador'));
         });
     };
-    
-<<<<<<< HEAD
+
     $scope.loadArchivoMatricula = function(id) {
 
+        $scope.infoArchivo = {};
 
+        $http.get("http://localhost/backEndControlOperadores/public/fileentry/getInfo/"+id
+            ).success(function(response) {
+            $scope.infoArchivo = response;
+        });
 
         $http({
-                        url : "http://localhost/backEndControlOperadores/public/fileentry/get/"+id,
-                        method : 'GET',
-                        params : {},
-                        headers : {
-                            'Content-type' : undefined,
-                        },
-                        responseType : 'arraybuffer'
-                    }).success(function(data, status, headers, config) {
-                        // TODO when WS success
-                        var file = new Blob([ data ], {
-                            type : 'application/csv'
-                        });
-                        //trick to download store a file having its URL
-                        var fileURL = URL.createObjectURL(file);
-                        var a         = document.createElement('a');
-                        a.href        = fileURL;
-                        a.target      = '_blank';
-                        a.download    = 'comprobante.pdf';
-                        document.body.appendChild(a);
-                        a.click();
-                    }).error(function(data, status, headers, config) {
-                    });
+                url : "http://localhost/backEndControlOperadores/public/fileentry/get/"+id,
+                method : 'GET',
+                params : {},
+                headers : {
+                    'Content-type' : undefined,
+                },
+                responseType : 'arraybuffer'
+                }).success(function(data, status, headers, config) {
+                // TODO when WS success
+                var file = new Blob([ data ], {
+                    type : 'application/csv'
+                });
 
-
+                //trick to download store a file having its URL
+                var fileURL = URL.createObjectURL(file);
+                var a         = document.createElement('a');
+                a.href        = fileURL;
+                a.target      = '_blank';
+                a.download    = $scope.infoArchivo.nombreOriginal;
+                document.body.appendChild(a);
+                a.click();
+            }).error(function(data, status, headers, config) {
+        });
     };
 
-    });
-=======
+
     $scope.eliminarLab = function(){
         $http.delete("http://localhost/backEndControlOperadores/public/EliminarLaboratorio/"+$scope.labActual.id)
         .success(function(response) {
@@ -145,4 +147,3 @@ angular.module('ASPStore').directive('fileInput' ,['$parse', function($parse){
         });
     };
 });
->>>>>>> origin/master
