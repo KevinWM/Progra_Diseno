@@ -52,6 +52,13 @@ angular
           templateUrl: 'administrador/views/labsAdministrador.html',
           controller: 'administradorCtrl'
         })
+
+    .state('asignarAdministrador', {
+          url: '/administrador/asignarAdministrador',
+          parent: 'base',
+          templateUrl: 'administrador/views/asignarAdministrador.html',
+          controller: 'administradorCtrl'
+        })
       /*
         .state('dashboard',{
             url: '/dashboard',
