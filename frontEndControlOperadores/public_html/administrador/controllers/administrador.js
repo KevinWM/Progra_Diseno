@@ -4,7 +4,18 @@
 
 'use strict';
 
-angular.module('ASPStore')
+angular.module('ASPStore').directive('fileInput' ,['$parse', function($parse){
+    return{
+        restrict:'A',
+        link:function(scope,elm,attrs){
+            elm.bind('change',function(){
+                $parse(attrs.fileInput)
+                .assign(scope,elm[0].files)
+            scope.$apply()
+            })
+        }
+    }
+}])
     .controller('administradorCtrl',function ($scope, $location, $state, solicitudEstudianteService, $http) {
         
         $scope.usuarioActual = solicitudEstudianteService;
@@ -55,4 +66,35 @@ angular.module('ASPStore')
                 });
         };
     
+    $scope.loadArchivoMatricula = function(id) {
+
+
+
+        $http({
+                        url : "http://localhost/backEndControlOperadores/public/fileentry/get/"+id,
+                        method : 'GET',
+                        params : {},
+                        headers : {
+                            'Content-type' : undefined,
+                        },
+                        responseType : 'arraybuffer'
+                    }).success(function(data, status, headers, config) {
+                        // TODO when WS success
+                        var file = new Blob([ data ], {
+                            type : 'application/csv'
+                        });
+                        //trick to download store a file having its URL
+                        var fileURL = URL.createObjectURL(file);
+                        var a         = document.createElement('a');
+                        a.href        = fileURL;
+                        a.target      = '_blank';
+                        a.download    = 'comprobante.pdf';
+                        document.body.appendChild(a);
+                        a.click();
+                    }).error(function(data, status, headers, config) {
+                    });
+
+
+    };
+
     });
